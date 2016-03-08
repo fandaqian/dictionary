@@ -1,2 +1,2 @@
 # dictionary
-Dictionary Cache by Nodejs + Express + Mongodb
+Dictionary Cache make use of Nodejs + Express + Mongodb
