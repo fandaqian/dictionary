@@ -14,7 +14,30 @@ var changeKeyNames = function(obj, namesMap) {
 };
 
 var getDate = function(optime) {
-    return optime.getFullYear();
+    // 2014-09-18T06:39:32.774+0000
+    var year = optime.getUTCFullYear();
+    var tmpMonth = optime.getUTCMonth() + 1;
+    var stringMonth = tmpMonth + '';
+    var month = stringMonth.length === 1 ? '0' + stringMonth : stringMonth;
+    var date = optime.getUTCDate();
+    var tmpHour = optime.getUTCHours();
+    var stringHour = tmpHour + '';
+    var hour = stringHour.length === 1 ? '0' + stringHour : stringHour;
+    var tmpMinute = optime.getUTCMinutes();
+    var stringMinute = tmpMinute + '';
+    var minute = stringMinute.length === 1 ? '0' + stringMinute : stringMinute;
+    var tmpSecond = optime.getUTCSeconds();
+    var stringSecond = tmpSecond + '';
+    var second = stringSecond.length === 1 ? '0' + stringSecond : stringSecond;
+    var tmpMill = optime.getUTCMilliseconds();
+    var stringMill = tmpMill + '';
+    var mill = stringMill;
+    if (stringMill.length === 1) {
+        mill = '00' + stringMill;
+    } else if (stringMill.length === 2) {
+        mill = '0' + stringMill;
+    }
+    return year + '-' + month + '-' + date + 'T' + hour + ':' + minute + ':' + second + '.' + mill + '+0000';
 };
 
 var appendList = function(data) {
