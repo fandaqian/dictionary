@@ -10,3 +10,11 @@ exports.sendOKJSON = function(data, msg) {
     result.result = data;
     return result;
 };
+
+exports.sendErrJSON = function(err, msg) {
+    var result = {};
+    result.status = 500;
+    result.msg = msg;
+    result.result = err;
+    return result;
+};

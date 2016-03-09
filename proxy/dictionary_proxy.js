@@ -42,12 +42,14 @@ var getDate = function(optime) {
 
 var appendList = function(data) {
     var list = [];
-    data.forEach(function(d) {
-        var temp = d.toObject();
-        delete temp.__v;
-        temp.optime = getDate(temp.optime);
-        list.push(changeKeyNames(temp, {'_id': 'id'}));
-    });
+    if (data) {
+        data.forEach(function (d) {
+            var temp = d.toObject();
+            delete temp.__v;
+            temp.optime = getDate(temp.optime);
+            list.push(changeKeyNames(temp, {'_id': 'id'}));
+        });
+    }
     return list;
 };
 

@@ -15,4 +15,6 @@ router.get('/dict/findDictionaryById', dictAPI.findDictionaryById);
 router.get('/dict/findDictionaryItemByPathCode', dictAPI.findDictionaryItemByPathCode);
 router.post('/dict/findDictionaryByFilter', dictAPI.findDictionaryByFilter);
 
+router.get('/dict/findByUserName', dictAPI.findByUserName);
+
 module.exports = router;

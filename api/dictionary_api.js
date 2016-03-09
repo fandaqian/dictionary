@@ -12,7 +12,7 @@ exports.init = function(req, res, next) {
     var ep = new eventproxy();
     ep.fail(next);
 
-    require('./dictInit').initData(function(len) {
+    require('./dict_init').initData(function(len) {
         res.send(util.sendOKJSON(null, 'insert ' + len + ' data!'));
     });
 };
@@ -37,7 +37,9 @@ exports.findDictionaryById = function(req, res, next) {
     var id  = req.query.id;
 
     proxy.dictProxy.findDictionaryById(id, function (err, data) {
-        if (!err) {
+        if (err) {
+            res.send(util.sendErrJSON(err));
+        } else {
             res.send(data);
         }
     });
@@ -51,7 +53,9 @@ exports.findDictionaryByPathCode = function(req, res, next) {
     var level  = parseInt(req.query.level);
 
     proxy.dictProxy.findDictionaryByPathCode(pathCode, level, function(err, list) {
-        if (!err) {
+        if (err) {
+            res.send(util.sendErrJSON(err));
+        } else {
             res.send(list);
         }
     });
@@ -64,7 +68,9 @@ exports.findDictionaryItemByPathCode = function(req, res, next) {
     var pathCode  = req.query.pathCode;
 
     proxy.dictProxy.findDictionaryItemByPathCode(pathCode, function(err, list) {
-        if (!err) {
+        if (err) {
+            res.send(util.sendErrJSON(err));
+        } else {
             res.send(list);
         }
     });
@@ -77,7 +83,9 @@ exports.findDictionaryByIds = function(req, res, next) {
     console.log('POST DATA:', JSON.stringify(req.body));
 
     proxy.dictProxy.findDictionaryByIds(req.body, function(err, list) {
-        if (!err) {
+        if (err) {
+            res.send(util.sendErrJSON(err));
+        } else {
             res.send(list);
         }
     });
@@ -99,7 +107,9 @@ exports.findDictionaryByFilter = function(req, res, next) {
     filter.prefix = postBody.prefix || 'filter_';
 
     proxy.dictProxy.findDictionaryByFilter(filter,  function(err, list) {
-        if (!err) {
+        if (err) {
+            res.send(util.sendErrJSON(err));
+        } else {
             var len = list.length;
             var resData = {};
             resData.status = 200;
@@ -109,4 +119,19 @@ exports.findDictionaryByFilter = function(req, res, next) {
             res.send(resData);
         }
     });
+};
+
+exports.findByUserName = function(req, res, next) {
+    var ep = new eventproxy();
+    ep.fail(next);
+
+    var userName = req.query.userName;
+    userName = userName || 'zk';
+
+    var data = require('./username_json');
+    var json = data.zk;
+    if (userName == 'admin') {
+        json = data.admin;
+    }
+    res.send(json);
 };
