@@ -53,6 +53,13 @@ var appendList = function(data) {
     return list;
 };
 
+exports.remove = function(param, callback) {
+    Dict.remove(param, function(err, data) {
+        console.log('remove count', data.result.n);
+        callback(err, data);
+    });
+};
+
 exports.save = function(dict, callback) {
     var dic = new Dict();
     dic._id = dict.id;

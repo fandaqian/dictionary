@@ -11,6 +11,7 @@ var eventproxy = require('eventproxy');
 var proxy = require('../proxy');
 
 exports.initData = function(callback) {
+
     var postData = {
         "params": {},
         "sortField": "optime",
@@ -22,7 +23,7 @@ exports.initData = function(callback) {
     var postStr = JSON.stringify(postData);
 
     var options = {
-        hostname: '',
+        hostname: 'www.77cheyou.com',
         path: '/utility/baseInfoRest/findDictionaryByFilter',
         method: 'POST',
         headers: {
@@ -43,6 +44,19 @@ exports.initData = function(callback) {
             // console.log('DATA: ', body);
             var data = JSON.parse(body);
             var ep = new eventproxy();
+
+            ep.immediate('removeDict', function() {
+                proxy.dictProxy.remove({},
+                    ep.immediate('getCount', function() {
+                        proxy.dictProxy.getCount(
+                            ep.done(function (count) {
+                                console.log('dict count', count);
+                            })
+                        );
+                    })
+                );
+            });
+
             var len = data.length;
 
             ep.after('insert', function(list) {
