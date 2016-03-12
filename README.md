@@ -12,11 +12,11 @@ Dictionary 是使用 [**Nodeclub**](https://github.com/cnodejs/nodeclub) 框架�
 ```
 1. 安装 `Node.js[必须]` `MongoDB[必须]`
 2. 启动 MongoDB 修改 models/index.js 数据库配置
-3. 修改 api/dict_init.js 添加 hostname
-3. `$ npm install` 安装 Dictionary 依赖包
-4. `$ node bin/www`
-5. 执行 http://localhost:30000/dict/init 初始化数据
-6. done!
+3. 修改 api/dict_init.js 并添加 hostname
+4. `$ npm install` 安装 Dictionary 依赖包
+5. `$ node bin/www`
+6. 执行 http://localhost:30000/dict/init 初始化数据
+7. done!
 ```
 
 ## 实现API
