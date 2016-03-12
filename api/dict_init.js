@@ -22,27 +22,13 @@ exports.initData = function(callback) {
     var postStr = JSON.stringify(postData);
 
     var options = {
-        hostname: 'www.77cheyou.com',
+        hostname: '',
         path: '/utility/baseInfoRest/findDictionaryByFilter',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         }
     };
-
-    /*var postData = {"params":{"EQ_vehType":"XC-JBSYC"},"sortField":"optime","page":1,"sortDir":"desc","size":15,"prefix":"filter_"};
-     var postStr = JSON.stringify(postData);
-
-     var options = {
-     hostname: 'test2.77cheyou.com',
-     port: 80,
-     path: '/dataService/customerRest/findCustomerByFilter',
-     method: 'POST',
-     headers: {
-     'Content-Type': 'application/json',
-     'Content-Length' : Buffer.byteLength(postStr, 'utf8')
-     }
-     };*/
 
     var req = http.request(options, function (res) {
         console.log('POSTDATA: ', postStr);
