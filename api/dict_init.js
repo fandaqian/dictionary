@@ -45,7 +45,7 @@ exports.initData = function(callback) {
             var data = JSON.parse(body);
             var ep = new eventproxy();
 
-            ep.immediate('removeDict', function() {
+            /*ep.immediate('removeDict', function() {
                 proxy.dictProxy.remove({},
                     ep.immediate('getCount', function() {
                         proxy.dictProxy.getCount(
@@ -55,7 +55,7 @@ exports.initData = function(callback) {
                         );
                     })
                 );
-            });
+            });*/
 
             var len = data.length;
 

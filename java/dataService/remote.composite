@@ -1,0 +1,34 @@
+<composite xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+           xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.1"
+           targetNamespace="http://com.zf.qqcy.dataService.sca"
+           name="remote">
+
+
+    <!-- 用户接口-->
+    <component name="BaseInfoComponent">  
+        <implementation.java class="com.cea.identity.remote.client.BaseInfoClient" />
+	<reference name="baseInfoInterface">  
+            <interface.java interface="com.cea.identity.remote.server.interfaces.BaseInfoInterface" />  
+            <!-- <tuscany:binding.rest uri="http://192.168.1.14:8080/utility/baseInfoRest"/> -->
+	    <!--<tuscany:binding.rmi uri="rmi://123.57.138.168:3322/baseInfoRmi"/>-->
+	    <tuscany:binding.rest uri="http://localhost:30000/dict"/>
+        </reference>  
+    </component>
+
+
+    <!-- openfire 用户接口-->
+    <component name="OpenfireUserComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.openfire.remote.client.UserServiceClient" />
+	<reference name="userServiceInterface">  
+            <interface.java interface="com.zf.qqcy.dataService.openfire.remote.server.interfaces.UserServiceInterface" />  
+            <tuscany:binding.rest uri="http://192.168.1.14:9090/plugins/restapi/v1/users">
+	       <tuscany:http-headers>
+		  <tuscany:header name="Authorization" value="qinxin"/>
+	       </tuscany:http-headers>
+	    </tuscany:binding.rest>
+        </reference>  
+    </component>
+
+
+
+</composite>

@@ -1,0 +1,161 @@
+<composite xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+           xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.1"
+           targetNamespace="http://com.ces.service.sca"
+           name="remote">
+
+ 
+    <!-- utility接口-->
+    <component name="BaseInfoComponent">  
+        <implementation.java class="com.cea.identity.remote.client.BaseInfoClient" />
+	<reference name="baseInfoInterface" >  
+            <interface.java interface="com.cea.identity.remote.server.interfaces.BaseInfoRmi" />  
+            <!--<tuscany:binding.rmi uri="rmi://123.57.138.168:3322/baseInfoRmi"/>-->
+            	    <tuscany:binding.rest uri="http://localhost:30000/dict"/>
+        </reference>  
+    </component>
+
+    <!-- sys接口-->
+    <component name="MsSysComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.sys.ms.remote.client.SysClient" />
+	<reference name="sysInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.sys.ms.remote.server.interfaces.MsSysInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/msSysRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    <component name="VehicleSettingComponent">
+        <implementation.java class="com.zf.qqcy.dataService.sys.ms.remote.client.VehicleSettingClient" />
+        <reference name="vehicleSettingInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.sys.ms.remote.server.interfaces.VehicleSettingInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/vehicleSettingRest">
+                <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>
+    </component>
+
+    <!-- member接口-->
+    <component name="MemberComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.member.remote.client.MemberClient" />
+	    <reference name="memberInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.member.remote.server.interfaces.MemberInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/memberRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    
+    <!-- 科目接口-->
+    <component name="SubjectComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.finance.remote.client.SubjectClient" />
+	    <reference name="subjectInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.finance.remote.server.interfaces.SubjectInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/finance/subjectRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+     <!-- 股东接口-->
+    <component name="ShareholderComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.finance.remote.client.ShareholderClient" />
+	    <reference name="shareholderInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.finance.remote.server.interfaces.ShareholderInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/finance/ShareholderRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    <!-- 财务系统接口-->
+    <component name="SysComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.finance.remote.client.SysClient" />
+	    <reference name="sysInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.finance.remote.server.interfaces.SysInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/finance/SysRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    <!-- 财务接口-->
+    <component name="FinanceComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.finance.remote.client.FinanceClient" />
+	    <reference name="financeInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.finance.remote.server.interfaces.FinanceInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/finance/FinanceRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    
+    <!-- 固定资产接口-->
+    <component name="FixedAssetsComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.finance.remote.client.FixedAssetsClient" />
+	    <reference name="fixedAssetsInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.finance.remote.server.interfaces.FixedAssetsInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/finance/FixedAssetsRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    
+    <component name="FlowTemplateComponent">
+        <implementation.java class="com.zf.qqcy.dataService.workflow.remote.client.FlowTemplateClient"/>
+        <reference name="flowTemplateInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.workflow.remote.server.interfaces.FlowTemplateInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/flowTemplateRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    
+    <component name="FlowTemplateStepComponent">
+       <implementation.java class="com.zf.qqcy.dataService.workflow.remote.client.FlowTemplateStepClient"/>
+        <reference name="flowTemplateStepInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.workflow.remote.server.interfaces.FlowTemplateStepInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/flowTemplateStepRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    
+    <component name="ApproverComponent">
+        <implementation.java class="com.zf.qqcy.dataService.workflow.remote.client.ApproverClient"/>
+        <reference name="approverInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.workflow.remote.server.interfaces.ApproverInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/approverRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    
+    <component name="WorkflowComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.workflow.remote.client.WorkflowClient" />
+	    <reference name="workflowInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.workflow.remote.server.interfaces.WorkflowInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/workflowRest"/>
+        </reference>  
+    </component>
+    
+    <component name="FileComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.file.remote.client.FileClient" />
+	    <reference name="fileInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.file.remote.server.interfaces.FileInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/fileRest"/>
+        </reference>  
+    </component>
+
+    <component name="BackupOperationComponent">  
+        <implementation.java class="com.zf.qqcy.qqcymanager.service.remote.sys.BackupOperationClient" />
+	    <reference name="backupOperationI" >  
+            <interface.java interface="com.zf.qqcy.qqcymanager.service.remote.sys.server.interfaces.BackupOperationI" />  
+            <tuscany:binding.rest uri="http://192.168.1.13:8080/dataService/backupRest">
+	        <tuscany:http-headers>
+	            <tuscany:header name="Cache-Control" value="no-cache"/>
+		    <tuscany:header name="Expires" value="-1"/>
+		    <tuscany:header name="X-Tuscany" value="tuscany"/>
+		    <tuscany:header name="Connection" value="Keep-Alive"/> 
+		</tuscany:http-headers>
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+
+</composite>

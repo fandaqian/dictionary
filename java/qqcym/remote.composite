@@ -1,0 +1,190 @@
+<composite xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+           xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.1"
+           targetNamespace="http://com.zf.qqcy.service.sca"
+           name="remote">
+           
+    <!-- sys接口-->
+    <component name="SiteSysComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.sys.site.remote.client.SysClient" />
+	<reference name="sysInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.sys.site.remote.server.interfaces.SiteSysInterface" />  
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/siteSysRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+    
+    <component name="MemberComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.member.remote.client.MemberClient" />
+	    <reference name="memberInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.member.remote.server.interfaces.MemberInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/memberRest">
+               <tuscany:operationSelector.jaxrs />
+            </tuscany:binding.rest>
+        </reference>  
+    </component>
+
+
+    <component name="FileComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.file.remote.client.FileClient" />
+	    <reference name="fileInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.file.remote.server.interfaces.FileInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/fileRest"/>
+        </reference>  
+    </component>
+
+
+    <component name="VehiclePubComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.client.VehiclepubClient" />
+	    <reference name="vehiclepubInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.server.interfaces.VehiclepubInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/vehiclepubRest"/>
+        </reference>  
+    </component>
+    
+    <component name="VehicleTypeComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.client.VehicleTypeClient" />
+	    <reference name="vehicleTypeInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.server.interfaces.VehicleTypeInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/vehicleTypeRest"/>
+        </reference>  
+    </component>
+
+    <component name="VehicleTypeRelatedComponent">
+        <implementation.java class="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.client.VehicleTypeRelatedClient" />
+        <reference name="vehicleTypeRelatedInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.server.interfaces.VehicleTypeRelatedInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/vehicleTypeRelatedRest"/>
+        </reference>
+    </component>
+
+    <component name="VehicleSycTypeComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.vehicle.site.newCar.remote.client.VehicleSycTypeClient" />
+	<reference name="vehicleSycTypeInterface" >  
+            <interface.java interface="com.zf.qqcy.dataService.vehicle.site.newCar.remote.server.interfaces.VehicleSycTypeInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/vehicleSycTypeRest"/>
+        </reference>  
+    </component>
+    
+    <component name="AppraiseComponent">
+    	<implementation.java class="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.client.appraise.AppraiseClient"/>
+        <reference name="appraiseInterface" >
+    	    <interface.java interface="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.server.appraise.interfaces.AppraiseInterface" />
+    	    <tuscany:binding.rest uri="http://localhost:8080/dataService/appraiseRest"/>
+	</reference>  
+    </component>
+	
+    <component name="CustomerComponent">
+    	<implementation.java class="com.zf.qqcy.dataService.customer.remote.client.CustomerClient"/>
+        <reference name="customerInterface" >
+    	    <interface.java interface="com.zf.qqcy.dataService.customer.remote.server.interfaces.CustomerInterface" />
+    	    <tuscany:binding.rest uri="http://localhost:8080/dataService/customerRest"/>
+	</reference>
+    </component>
+
+    <!--
+    <component name="BidComponent">
+    	<implementation.java class="com.zf.qqcy.dataService.remote.client.Bid.BidClient"/>
+        <reference name="bidInterface" >
+    	    <interface.java interface="com.zf.qqcy.dataService.remote.server.bid.interfaces.BidInterface" />
+    	    <tuscany:binding.rest uri="http://localhost:8080/dataService/bidRest"/>
+	</reference>  
+    </component>
+    -->
+
+    <component name="VehArchivesComponent">
+    	<implementation.java class="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.client.archives.VehArchivesClient"/>
+        <reference name="vehArchivesInterface" >
+    	    <interface.java interface="com.zf.qqcy.dataService.vehicle.site.usedCar.remote.server.archives.interfaces.VehArchivesInterface" />
+    	    <tuscany:binding.rest uri="http://localhost:8080/dataService/archivesRest"/>
+	</reference>  
+    </component>
+
+
+    <!-- 用户接口-->
+    <component name="BaseInfoComponent">  
+        <implementation.java class="com.cea.identity.remote.client.BaseInfoClient" />
+	<reference name="baseInfoInterface">  
+            <interface.java interface="com.cea.identity.remote.server.interfaces.BaseInfoInterface" />  
+            <!-- <tuscany:binding.rest uri="http://192.168.1.14:8080/utility/baseInfoWs"/> -->
+	        <!-- <tuscany:binding.rmi uri="rmi://123.57.138.168:3322/baseInfoRmi"/>-->
+	        <tuscany:binding.rest uri="http://localhost:30000/dict"/>
+        </reference>
+    </component>
+
+    <!-- openfire 用户接口-->
+    <component name="OpenfireUserComponent">  
+        <implementation.java class="com.zf.qqcy.dataService.openfire.remote.client.UserServiceClient" />
+        <reference name="userServiceInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.openfire.remote.server.interfaces.UserServiceInterface" />
+            <tuscany:binding.rest uri="http://192.168.1.14:9090/plugins/restapi/v1/users">
+	       <tuscany:http-headers>
+		  <tuscany:header name="Authorization" value="qinxin"/>
+	       </tuscany:http-headers>
+	    </tuscany:binding.rest>
+        </reference> 
+    </component>
+
+    <!--新车载货类发布-->
+    <component name="NewTruckComponent">
+        <implementation.java class="com.zf.qqcy.dataService.vehicle.site.newCar.remote.client.NewTruckClient" />
+        <reference name="newTruckInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.vehicle.site.newCar.remote.server.interfaces.NewTruckInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/newTruckRest"/>
+        </reference>
+    </component>
+
+    <!--新车整体式发布-->
+    <component name="NewIntegralComponent">
+        <implementation.java class="com.zf.qqcy.dataService.vehicle.site.newCar.remote.client.NewIntegralClient" />
+        <reference name="newIntegralInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.vehicle.site.newCar.remote.server.interfaces.NewIntegralInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/newIntegralRest"/>
+        </reference>
+    </component>
+
+    <!--新车自卸类发布-->
+    <component name="NewSelfDischargingComponent">
+        <implementation.java class="com.zf.qqcy.dataService.vehicle.site.newCar.remote.client.NewSelfDischargingClient" />
+        <reference name="newSelfDischargingInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.vehicle.site.newCar.remote.server.interfaces.NewSelfDischargingInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/newSelfDischargingRest"/>
+        </reference>
+    </component>
+
+    <!--经销商资源-->
+    <component name="DealerResourceComponent">
+        <implementation.java class="com.zf.qqcy.dataService.vehicle.site.newCar.remote.client.DealerResourceClient" />
+        <reference name="dealerResourceInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.vehicle.site.newCar.remote.server.interfaces.DealerResourceInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/dealerResourceRest"/>
+        </reference>
+    </component>
+
+    <!--加盟申请-->
+    <component name="JoinApplicationComponent">
+        <implementation.java class="com.zf.qqcy.dataService.join.remote.client.JoinApplicationClient" />
+        <reference name="joinApplicationInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.join.remote.server.interfaces.JoinApplicationInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/joinApplicationRest"/>
+        </reference>
+    </component>
+
+    <!--计划任务-->
+    <component name="ScheduleComponent">
+        <implementation.java class="com.zf.qqcy.dataService.schedule.remote.client.JobClient" />
+        <reference name="jobInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.schedule.remote.server.interfaces.JobInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/scheduleRest"/>
+        </reference>
+    </component>
+
+    <!--推送消息-->
+    <component name="MsgComponent">
+        <implementation.java class="com.zf.qqcy.dataService.msg.remote.client.MsgClient" />
+        <reference name="msgInterface" >
+            <interface.java interface="com.zf.qqcy.dataService.msg.remote.server.interfaces.MsgInterface" />
+            <tuscany:binding.rest uri="http://localhost:8080/dataService/msgRest"/>
+        </reference>
+    </component>
+</composite>
