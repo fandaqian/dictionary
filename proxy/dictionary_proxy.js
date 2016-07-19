@@ -82,6 +82,7 @@ exports.findDictionaryById = function (id, callback) {
         if (data) {
             temp = data.toObject();
             temp.id = temp._id;
+            temp.optime = getDate(temp.optime);
             delete temp.__v;
             delete temp._id;
         }
