@@ -110,13 +110,13 @@ exports.findDictionaryByFilter = function(req, res, next) {
         if (err) {
             res.send(util.sendErrJSON(err));
         } else {
-            var len = list.length;
+            /*var len = list.length;
             var resData = {};
             resData.status = 200;
             resData.filter = filter;
             resData.count = len;
-            resData.result = list;
-            res.send(resData);
+            resData.result = list;*/
+            res.send(list);
         }
     });
 };
