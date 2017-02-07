@@ -5,7 +5,7 @@
 var mongoose = require('mongoose');
 
 var config = {
-    db: 'mongodb://127.0.0.1:12345/dictionary'
+    db: 'mongodb://localhost:12345/dictionary'
 };
 
 mongoose.connect(config.db, {
